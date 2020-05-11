@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "stylelint-prettier/recommended",
+    "stylelint-config-rational-order"
+  ],
+  "plugins": [
+    "stylelint-scss",
+    "stylelint-prettier",
+    "stylelint-order",
+    "stylelint-config-rational-order/plugin"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      true,
+      {
+        "singleQuote": true,
+        "tabWidth": 4
+      }
+    ],
+    "order/order": [
+      "custom-properties",
+      "declarations"
+    ],
+    "order/properties-order": [],
+    "plugin/rational-order": [true, {
+      "border-in-box-model": true,
+      "empty-line-between-groups": true
+    }]
+  }
+}
