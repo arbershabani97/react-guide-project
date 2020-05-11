@@ -1,17 +1,18 @@
 import axios from "./axios";
 
-const axiosWrapper = (reducer, requestId) => {
+const axiosWrapper = (reducer, requestId, update) => {
 	const instance = axios.create();
-	instance.defaults.headers.requestId = requestId;
-	instance.defaults.headers.reducer = reducer;
+	if (requestId) instance.defaults.headers.requestId = requestId;
+	if (reducer) instance.defaults.headers.reducer = reducer;
+	if (update) instance.defaults.headers.update = update;
 	instance.interceptors.request = axios.interceptors.request;
 	instance.interceptors.response = axios.interceptors.response;
 	return instance;
 };
 
-const axiosReq = async (reducer, requestId, type, url, data = null, params = null, headers = null) => {
+const axiosReq = async (reducer, requestId, type, url, data = null, params = null, headers = null, update) => {
 	try {
-		if (type === "get") return await axiosWrapper(reducer, requestId)[type](url, {params});
+		if (type === "get") return await axiosWrapper(reducer, requestId, update)[type](url, {params});
 		if (type === "post") return await axiosWrapper(reducer, requestId)[type](url, data, headers);
 		if (type === "put") return await axiosWrapper(reducer, requestId)[type](url, data, headers);
 		if (type === "delete") return await axiosWrapper(reducer, requestId)[type](url);

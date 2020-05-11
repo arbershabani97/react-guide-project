@@ -5,9 +5,10 @@ import Actions from "../components/Actions";
 // eslint-disable-next-line max-statements
 const dispatcher = (type, data) => {
 	const {method} = data.config;
-	const {reducer, requestId} = data.config ? data.config.headers : {};
+	const {reducer, requestId, update} = data.config ? data.config.headers : {};
 
 	const instance = Actions[reducer];
+	if (!instance) return;
 
 	switch (type) {
 		case "request":
@@ -29,7 +30,7 @@ const dispatcher = (type, data) => {
 				data.data.success = true;
 				// Add Id, when it is a delete request or getSingle
 				if (method === "delete" || !reducer.endsWith("s")) data.data.id = +data.config.url.split("/").slice(-1)[0];
-				instance[method](data.data);
+				update ? instance["getUpdate"](data.data) : instance[method](data.data);
 			}
 			break;
 

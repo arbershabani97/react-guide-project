@@ -8,6 +8,7 @@ import DeleteProject from "./resources/DeleteProject";
 import EditProject from "./resources/EditProject";
 import ListProjects from "./resources/ListProjects";
 import ShowProject from "./resources/ShowProject";
+import SearchProjects from "./resources/_SearchProjects";
 
 const Projects = () => {
 	const [activeTab, setActiveTab] = useState("home");
@@ -16,6 +17,7 @@ const Projects = () => {
 
 	const isHomeActive = useMemo(() => (activeTab === "home" ? "active" : ""), [activeTab]);
 	const isCreateActive = useMemo(() => (activeTab === "create" ? "active" : ""), [activeTab]);
+	const isSearchActive = useMemo(() => (activeTab === "search" ? "active" : ""), [activeTab]);
 
 	return (
 		<div className="Projects">
@@ -25,6 +27,9 @@ const Projects = () => {
 				</button>
 				<button className={isCreateActive} onClick={handleToggle} tab="create" type="button">
 					Create
+				</button>
+				<button className={isSearchActive} onClick={handleToggle} tab="search" type="button">
+					Search
 				</button>
 			</div>
 			<TabContent activeTab={activeTab}>
@@ -47,6 +52,10 @@ const Projects = () => {
 				<TabPane tabId="delete">
 					<h3>Delete Tab</h3>
 					<DeleteProject />
+				</TabPane>
+				<TabPane tabId="search">
+					<h3>Search Tab</h3>
+					<SearchProjects />
 				</TabPane>
 			</TabContent>
 		</div>

@@ -8,10 +8,14 @@ let requestId = 1;
 const modelFn = (item) => _pick(item, _keys(requestModel));
 // Reducer & requestId
 const requestData = () => ["projects", generateId(requestId++)];
-
-const getProjects = (params = null) => axiosReq(...requestData(), "get", "/posts", null, params);
+// Save Data in Redux
+const getProjects = (params = null, update) => axiosReq(...requestData(), "get", "/posts", null, params, null, update);
 const postProject = (data) => axiosReq(...requestData(), "post", "/posts", modelFn(data));
 const putProject = (data) => axiosReq(...requestData(), "put", "/posts/" + data.id, modelFn(data));
 const deleteProject = (data) => axiosReq(...requestData(), "delete", "/posts/" + data.id);
 
-export {getProjects, postProject, putProject, deleteProject};
+// Only API Call
+const searchProjects = (params = null) => axiosReq("", "", "get", "/posts", null, params);
+// const filteredProjects = params;
+
+export {getProjects, postProject, putProject, deleteProject, searchProjects};

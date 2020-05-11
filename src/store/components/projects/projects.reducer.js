@@ -1,10 +1,11 @@
-import {GET_PROJECTS, POST_PROJECT, PUT_PROJECT, DELETE_PROJECT, PROJECTS_ERROR} from "../../actionTypes";
+import {GET_PROJECTS, POST_PROJECT, PUT_PROJECT, DELETE_PROJECT, PROJECTS_ERROR, GET_UPDATE_PROJECTS} from "../../actionTypes";
 import _pick from "lodash/pick";
 import _keys from "lodash/keys";
 import _unionWith from "lodash/unionWith";
 import _union from "lodash/union";
 import _filter from "lodash/filter";
 import _map from "lodash/map";
+import _uniqBy from "lodash/uniqBy";
 import requestIdFilter from "../../helpers/requestIdFilter";
 import {reducerModel} from "./projects.model";
 
@@ -13,7 +14,10 @@ const modelFn = (item) => _pick(item, _keys(reducerModel));
 export default (state = [], action) => {
 	switch (action.type) {
 		case GET_PROJECTS:
-			return _map([...action.payload.slice(0, 10), ...state], modelFn);
+			return _map(_uniqBy([...action.payload.slice(0, 5), ...state], "id"), modelFn);
+
+		case GET_UPDATE_PROJECTS:
+			return _map([...action.payload.slice(0, 3)], modelFn);
 
 		case POST_PROJECT:
 			if (!action.payload.id) action.payload.id = Math.floor(Math.random() * 100);
