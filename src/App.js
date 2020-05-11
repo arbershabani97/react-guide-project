@@ -2,6 +2,7 @@ import React from "react";
 import {Router, Route, Switch} from "react-router-dom";
 import history from "./history";
 import Projects from "./components/projects/Projects";
+import "./App.scss";
 
 const App = () => {
 	return (

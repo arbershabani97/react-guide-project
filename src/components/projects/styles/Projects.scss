@@ -17,6 +17,12 @@
 			}
 			&.active {
 				background: rgba(0, 0, 0, 0.2);
+				&:hover {
+					background: rgba(0, 0, 0, 0.18);
+				}
+			}
+			&:hover {
+				background: rgba(0, 0, 0, 0.12);
 			}
 		}
 	}
@@ -56,6 +62,9 @@
 			color: #f8f9fa;
 
 			background-color: #0062cc;
+			&:hover {
+				background: rgba(#0062cc, 0.9);
+			}
 		}
 	}
 	.box {
