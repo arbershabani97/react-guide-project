@@ -1,6 +1,6 @@
 import "./styles/_SearchProjects.scss";
 
-import React, {useState, useCallback} from "react";
+import React, {useState, useRef} from "react";
 import _debounce from "lodash/debounce";
 
 import {searchProjects} from "../../../store/components/projects/projects.API";
@@ -10,19 +10,21 @@ const _SearchProjects = ({onToggle}) => {
 	const [searchValue, setSearchValue] = useState("");
 	const [results, setResults] = useState([]);
 
-	const submitSearch = _debounce(async (search) => {
-		try {
-			const {data} = await searchProjects({search});
-			setResults(data);
-		} catch (e) {
-			console.error(e);
-		}
-	}, 700);
+	const submitSearch = useRef(
+		_debounce(async (search) => {
+			try {
+				const {data} = await searchProjects({search});
+				setResults(data);
+			} catch (e) {
+				console.error(e);
+			}
+		}, 700),
+	).current;
 
-	const handleChange = useCallback((e) => {
+	const handleChange = (e) => {
 		setSearchValue(e.target.value);
 		submitSearch(e.target.value);
-	}, []);
+	};
 
 	return (
 		<div className="_SearchProjects">
@@ -34,4 +36,4 @@ const _SearchProjects = ({onToggle}) => {
 	);
 };
 
-export default React.memo(_SearchProjects);
+export default _SearchProjects;
