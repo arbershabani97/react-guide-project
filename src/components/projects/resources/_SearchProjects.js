@@ -1,6 +1,6 @@
 import "./styles/_SearchProjects.scss";
 
-import React, {useState, useRef} from "react";
+import React, {useState, useCallback} from "react";
 import _debounce from "lodash/debounce";
 
 import {searchProjects} from "../../../store/components/projects/projects.API";
@@ -10,7 +10,7 @@ const _SearchProjects = ({onToggle}) => {
 	const [searchValue, setSearchValue] = useState("");
 	const [results, setResults] = useState([]);
 
-	const submitSearch = useRef(
+	const submitSearch = useCallback(
 		_debounce(async (search) => {
 			try {
 				const {data} = await searchProjects({search});
@@ -19,7 +19,8 @@ const _SearchProjects = ({onToggle}) => {
 				console.error(e);
 			}
 		}, 700),
-	).current;
+		[],
+	);
 
 	const handleChange = (e) => {
 		setSearchValue(e.target.value);

@@ -30,4 +30,4 @@ const CreateProject = () => {
 	);
 };
 
-export default React.memo(CreateProject);
+export default CreateProject;
