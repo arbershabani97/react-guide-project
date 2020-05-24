@@ -1,6 +1,6 @@
 import "./styles/ListProjects.scss";
 
-import React, {useEffect, useCallback, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 
 import {getProjects} from "../../../store/components/projects/projects.API";
@@ -11,7 +11,7 @@ const ListProjects = ({projects, onToggle}) => {
 	const [currentPage, setCurrentPage] = useState(0);
 
 	// Fetch Projects by providing page number
-	const fetchProjects = useCallback(async (page) => {
+	const fetchProjects = async (page) => {
 		try {
 			// await getProjects({page});
 			await getProjects();
@@ -19,26 +19,24 @@ const ListProjects = ({projects, onToggle}) => {
 		} catch (e) {
 			console.error(e);
 		}
-	}, []);
+	};
 
 	useEffect(() => {
 		fetchProjects(1);
 	}, []);
 
 	// Handle Next Click - Add Next Page
-	const handleNext = useCallback(async () => {
-		fetchProjects(currentPage + 1);
-	}, []);
+	const handleNext = async () => fetchProjects(currentPage + 1);
 
 	// Handle Filter Click - Filter Pages
-	const handleFilter = useCallback(async () => {
+	const handleFilter = async () => {
 		try {
 			// await getProjects({page:1, userId: 1}, true);
 			await getProjects(null, true);
 		} catch (e) {
 			console.error(e);
 		}
-	}, []);
+	};
 
 	return (
 		<>
@@ -58,4 +56,4 @@ const ListProjects = ({projects, onToggle}) => {
 };
 const mapStateToProps = (state) => ({projects: selectProjects(state)});
 
-export default connect(mapStateToProps)(React.memo(ListProjects));
+export default connect(mapStateToProps)(ListProjects);

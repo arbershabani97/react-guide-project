@@ -36,4 +36,4 @@ const DeleteProject = ({id, title, userId}) => {
 
 const mapStateToProps = (state) => ({...selectProject(state)});
 
-export default connect(mapStateToProps)(React.memo(DeleteProject));
+export default connect(mapStateToProps)(DeleteProject);

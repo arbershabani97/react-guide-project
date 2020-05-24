@@ -1,6 +1,6 @@
 import "./styles/Projects.scss";
 
-import React, {useCallback, useMemo, useState} from "react";
+import React, {useCallback, useState} from "react";
 import {TabContent, TabPane} from "reactstrap";
 
 import CreateProject from "./resources/CreateProject";
@@ -15,9 +15,9 @@ const Projects = () => {
 
 	const handleToggle = useCallback((e) => setActiveTab(e.currentTarget.getAttribute("tab") || "home"), []);
 
-	const isHomeActive = useMemo(() => (activeTab === "home" ? "active" : ""), [activeTab]);
-	const isCreateActive = useMemo(() => (activeTab === "create" ? "active" : ""), [activeTab]);
-	const isSearchActive = useMemo(() => (activeTab === "search" ? "active" : ""), [activeTab]);
+	const isHomeActive = activeTab === "home" ? "active" : "";
+	const isCreateActive = activeTab === "create" ? "active" : "";
+	const isSearchActive = activeTab === "search" ? "active" : "";
 
 	return (
 		<div className="Projects">
@@ -62,4 +62,4 @@ const Projects = () => {
 	);
 };
 
-export default React.memo(Projects);
+export default Projects;

@@ -33,4 +33,4 @@ const EditProject = ({id, title: pTitle, userId: pUserId}) => {
 
 const mapStateToProps = (state) => ({...selectProject(state)});
 
-export default connect(mapStateToProps)(React.memo(EditProject));
+export default connect(mapStateToProps)(EditProject);

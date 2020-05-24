@@ -1,18 +1,18 @@
 import "./styles/ShowProject.scss";
 
-import React, {useCallback} from "react";
+import React from "react";
 import {connect} from "react-redux";
 import {selectProject} from "../../../store/components/project/project.selector";
 import {getProject} from "../../../store/components/project/project.API";
 
 const ShowProject = ({id, title, userId, body}) => {
-	const handleClick = useCallback(async () => {
+	const handleClick = async () => {
 		try {
 			await getProject(id);
 		} catch (e) {
 			console.error(e);
 		}
-	}, [id]);
+	};
 	return (
 		<div className="ShowProject box">
 			<p>
@@ -38,4 +38,4 @@ const ShowProject = ({id, title, userId, body}) => {
 
 const mapStateToProps = (state) => ({...selectProject(state)});
 
-export default connect(mapStateToProps)(React.memo(ShowProject));
+export default connect(mapStateToProps)(ShowProject);

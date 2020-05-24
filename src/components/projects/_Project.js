@@ -1,16 +1,13 @@
 import "./styles/_Project.scss";
 
-import React, {useCallback} from "react";
+import React from "react";
 import {updateProject} from "../../store/components/project/project.action";
 
 const _Project = ({project, onToggle}) => {
-	const handleClick = useCallback(
-		(e) => {
-			onToggle(e);
-			updateProject(project);
-		},
-		[project],
-	);
+	const handleClick = (e) => {
+		onToggle(e);
+		updateProject(project);
+	};
 
 	const {title, userId} = project;
 	return (
@@ -36,4 +33,4 @@ const _Project = ({project, onToggle}) => {
 	);
 };
 
-export default React.memo(_Project);
+export default _Project;
