@@ -9,14 +9,15 @@ import {putProject} from "../../../store/components/projects/projects.API";
 import {useAPI} from "../../../utils/useAPI";
 import Input from "../../shared/Input";
 
-const EditProject = ({id, title, userId}) => {
+const EditProject = ({project}) => {
+	const {id, title, userId} = project;
 	const {register, handleSubmit, errors, reset} = useForm();
 	// eslint-disable-next-line no-unused-vars
-	const {onSubmit, apiError} = useAPI({apiFn: putProject, reset});
+	const {onSubmit, loading, apiError} = useAPI({apiFn: putProject, reset});
 
 	return (
 		<form className="EditProject" onSubmit={handleSubmit(onSubmit)}>
-			<input ref={register({required: true})} name="id" type="hidden" value={id} />
+			<input ref={register({required: true})} defaultValue={id} name="id" type="hidden" />
 			<Input defaultValue={title} error={errors?.["title"]} name="title" placeholder="title" register={register({required: "Your input is required"})} type="text" />
 			<Input defaultValue={userId} error={errors?.["userId"]} name="userId" placeholder="userId" register={register({required: "Your input is required"})} type="text" />
 			<button type="submit">Submit</button>
@@ -24,6 +25,6 @@ const EditProject = ({id, title, userId}) => {
 	);
 };
 
-const mapStateToProps = (state) => ({...selectProject(state)});
+const mapStateToProps = (state) => ({project: selectProject(state)});
 
 export default connect(mapStateToProps)(EditProject);

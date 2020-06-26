@@ -8,14 +8,15 @@ import {selectProject} from "../../../store/components/project/project.selector"
 import {deleteProject} from "../../../store/components/projects/projects.API";
 import {useAPI} from "../../../utils/useAPI";
 
-const DeleteProject = ({id, title, userId}) => {
+const DeleteProject = ({project}) => {
+	const {id, title, userId} = project;
 	const {register, handleSubmit, reset} = useForm();
 	// eslint-disable-next-line no-unused-vars
-	const {onSubmit, apiError} = useAPI({apiFn: deleteProject, reset});
+	const {onSubmit, loading, apiError} = useAPI({apiFn: deleteProject, reset});
 
 	return (
 		<form className="DeleteProject box" onSubmit={handleSubmit(onSubmit)}>
-			<input ref={register({required: true})} name="id" type="hidden" value={id} />
+			<input ref={register({required: true})} defaultValue={id} name="id" type="hidden" />
 			<p>
 				title: <span>{title}</span>
 			</p>
@@ -27,6 +28,6 @@ const DeleteProject = ({id, title, userId}) => {
 	);
 };
 
-const mapStateToProps = (state) => ({...selectProject(state)});
+const mapStateToProps = (state) => ({project: selectProject(state)});
 
 export default connect(mapStateToProps)(DeleteProject);

@@ -10,7 +10,7 @@ import Input from "../../shared/Input";
 const CreateProject = () => {
 	const {register, handleSubmit, errors, reset} = useForm();
 	// eslint-disable-next-line no-unused-vars
-	const {onSubmit, apiError} = useAPI({apiFn: postProject, reset});
+	const {onSubmit, loading, apiError} = useAPI({apiFn: postProject, reset});
 
 	return (
 		<form className="CreateProject" onSubmit={handleSubmit(onSubmit)}>
@@ -28,7 +28,7 @@ const CreateProject = () => {
 				type="text"
 			/>
 			<Input error={errors?.["userId"]} name="userId" placeholder="userId" register={register({required: "Your input is required"})} type="text" />
-			<button type="submit">Submit </button>
+			<button type="submit">Submit</button>
 		</form>
 	);
 };

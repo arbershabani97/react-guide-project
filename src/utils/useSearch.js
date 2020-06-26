@@ -5,6 +5,7 @@ export const useSearch = ({apiFn, debounceTime = 700}) => {
 	const [searchValue, setSearchValue] = useState("");
 	const [results, setResults] = useState([]);
 	const [error, setError] = useState("");
+	const [loading, setLoading] = useState(false);
 
 	const submitSearch = useCallback(
 		_debounce(async (search) => {
@@ -13,10 +14,13 @@ export const useSearch = ({apiFn, debounceTime = 700}) => {
 					setResults([]);
 					return;
 				}
+				setLoading(true);
 				const {data} = await apiFn({search});
+				setLoading(false);
 				setResults(data);
 			} catch (error_) {
 				setError(error_?.response || "No Internet Connection!");
+				setLoading(false);
 			}
 		}, debounceTime),
 		[],
@@ -32,5 +36,6 @@ export const useSearch = ({apiFn, debounceTime = 700}) => {
 		results,
 		handleChange,
 		apiError: error,
+		loading,
 	};
 };

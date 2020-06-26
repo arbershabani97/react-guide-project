@@ -10,9 +10,12 @@ import {useFilterPaginationAPI} from "../../../utils/useFilterPaginationAPI";
 
 const ListProjects = ({projects, onToggle}) => {
 	// eslint-disable-next-line no-unused-vars
-	const {handleFetch, results, apiError, currentPage, loadedPages} = useFilterPaginationAPI({apiFn: getProjects});
+	const {handleFetch, results, loading, apiError, currentPage, loadedPages} = useFilterPaginationAPI({apiFn: getProjects});
 
-	useEffect(() => handleFetch({page: 1}), []);
+	useEffect(() => {
+		handleFetch({page: 1});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	// Handle Next Click - Add Next Page
 	const handleNext = () => handleFetch({page: currentPage + 1});

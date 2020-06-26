@@ -7,9 +7,10 @@ import {getProject} from "../../../store/components/project/project.API";
 import {selectProject} from "../../../store/components/project/project.selector";
 import {useFetchAPI} from "../../../utils/useFetchAPI";
 
-const ShowProject = ({id, title, userId, body}) => {
+const ShowProject = ({project}) => {
+	const {id, title, userId, body} = project;
 	// eslint-disable-next-line no-unused-vars
-	const {handleClick, results, apiError} = useFetchAPI({apiFn: getProject, data: id});
+	const {handleClick, results, loading, apiError} = useFetchAPI({apiFn: getProject, data: id});
 
 	return (
 		<div className="ShowProject box">
@@ -34,6 +35,6 @@ const ShowProject = ({id, title, userId, body}) => {
 	);
 };
 
-const mapStateToProps = (state) => ({...selectProject(state)});
+const mapStateToProps = (state) => ({project: selectProject(state)});
 
 export default connect(mapStateToProps)(ShowProject);

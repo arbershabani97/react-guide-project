@@ -6,11 +6,13 @@ export const useFilterPaginationAPI = ({apiFn, debounceTime = 500}) => {
 	const [loadedPages, setLoadedPages] = useState(new Set());
 	const [results, setResults] = useState();
 	const [error, setError] = useState();
+	const [loading, setLoading] = useState(false);
 
 	const handleFetch = useCallback(
 		// eslint-disable-next-line max-statements
 		_debounce(async (data, reset) => {
 			try {
+				setLoading(true);
 				if (reset) {
 					const {data: res} = await apiFn(data, reset);
 					setCurrentPage(data.page);
@@ -22,9 +24,11 @@ export const useFilterPaginationAPI = ({apiFn, debounceTime = 500}) => {
 					setCurrentPage(data.page);
 					setResults(res);
 				}
+				setLoading(false);
 			} catch (error_) {
 				setLoadedPages((_loadedPages) => new Set(_loadedPages).delete(data.page));
 				setError(error_?.response || "No Internet Connection!");
+				setLoading(false);
 			}
 		}, debounceTime),
 	);
@@ -35,5 +39,6 @@ export const useFilterPaginationAPI = ({apiFn, debounceTime = 500}) => {
 		apiError: error,
 		currentPage,
 		loadedPages,
+		loading,
 	};
 };
