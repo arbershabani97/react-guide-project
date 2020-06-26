@@ -34,7 +34,7 @@
 			"git add"
 		],
 		"*.{scss}": [
-			"stylelint --fix",
+			"stylelint --fix --syntax scss",
 			"git add"
 		]	  
 	},
