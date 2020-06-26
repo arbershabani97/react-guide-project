@@ -1,31 +1,13 @@
 import "./styles/_SearchProjects.scss";
 
-import React, {useState, useCallback} from "react";
-import _debounce from "lodash/debounce";
+import React from "react";
+import {useSearch} from "../../../utils/useSearch";
 
-import {searchProjects} from "../../../store/components/projects/projects.API";
 import Project from "../_Project";
+import {searchProjects} from "../../../store/components/projects/projects.API";
 
 const _SearchProjects = ({onToggle}) => {
-	const [searchValue, setSearchValue] = useState("");
-	const [results, setResults] = useState([]);
-
-	const submitSearch = useCallback(
-		_debounce(async (search) => {
-			try {
-				const {data} = await searchProjects({search});
-				setResults(data);
-			} catch (e) {
-				console.error(e);
-			}
-		}, 700),
-		[],
-	);
-
-	const handleChange = (e) => {
-		setSearchValue(e.target.value);
-		submitSearch(e.target.value);
-	};
+	const {searchValue, results, handleChange, apiError} = useSearch({apiFn: searchProjects});
 
 	return (
 		<div className="_SearchProjects">

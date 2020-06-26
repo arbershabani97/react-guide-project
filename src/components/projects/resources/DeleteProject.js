@@ -1,28 +1,20 @@
 import "./styles/DeleteProject.scss";
 
-import React, {useCallback} from "react";
+import React from "react";
 import {useForm} from "react-hook-form";
 import {connect} from "react-redux";
-import _debounce from "lodash/debounce";
+import {useAPI} from "../../../utils/useAPI";
 
 import {deleteProject} from "../../../store/components/projects/projects.API";
 import {selectProject} from "../../../store/components/project/project.selector";
 
 const DeleteProject = ({id, title, userId}) => {
-	const {handleSubmit} = useForm();
-	const onSubmit = useCallback(
-		_debounce(async () => {
-			try {
-				await deleteProject({id});
-			} catch (e) {
-				console.error(e);
-			}
-		}, 300),
-		[id],
-	);
+	const {register, handleSubmit, reset} = useForm();
+	const {onSubmit, apiError} = useAPI({apiFn: deleteProject, reset});
 
 	return (
 		<form className="DeleteProject box" onSubmit={handleSubmit(onSubmit)}>
+			<input type="hidden" name="id" value={id} ref={register({required: true})} />
 			<p>
 				title: <span>{title}</span>
 			</p>

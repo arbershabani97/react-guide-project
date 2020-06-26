@@ -1,31 +1,37 @@
 import "./styles/EditProject.scss";
 
-import React, {useCallback} from "react";
+import React from "react";
 import {useForm} from "react-hook-form";
 import {connect} from "react-redux";
-import _debounce from "lodash/debounce";
+import {useAPI} from "../../../utils/useAPI";
+import Input from "../../shared/Input";
 
 import {putProject} from "../../../store/components/projects/projects.API";
 import {selectProject} from "../../../store/components/project/project.selector";
 
-const EditProject = ({id, title: pTitle, userId: pUserId}) => {
-	const {register, handleSubmit, errors} = useForm();
-
-	const onSubmit = useCallback(
-		_debounce(async ({title, userId}) => {
-			try {
-				await putProject({id, title, userId});
-			} catch (e) {
-				console.error(e);
-			}
-		}, 300),
-		[id],
-	);
+const EditProject = ({id, title, userId}) => {
+	const {register, handleSubmit, errors, reset} = useForm();
+	const {onSubmit, apiError} = useAPI({apiFn: putProject, reset});
 
 	return (
 		<form className="EditProject" onSubmit={handleSubmit(onSubmit)}>
-			<input type="text" name="title" ref={register({required: true})} placeholder="title" defaultValue={pTitle} />
-			<input type="text" name="userId" ref={register({required: true})} placeholder="userId" defaultValue={pUserId} />
+			<input type="hidden" name="id" ref={register({required: true})} value={id} />
+			<Input 
+				type="text" 
+				name="title" 
+				placeholder="title"
+				defaultValue={title}
+				register={register({required:"Your input is required"})} 
+				error={errors?.["title"]} 
+				/>
+			<Input 
+				type="text" 
+				name="userId" 
+				placeholder="userId" 
+				defaultValue={userId}
+				register={register({required:"Your input is required"})} 
+				error={errors?.["userId"]} 
+				/>
 			<button type="submit">Submit</button>
 		</form>
 	);
