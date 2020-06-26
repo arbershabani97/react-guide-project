@@ -1,5 +1,6 @@
 .ListProjects {
 	display: flex;
+	
     flex-wrap: wrap;
 
 	> *:not(:last-of-type) {
