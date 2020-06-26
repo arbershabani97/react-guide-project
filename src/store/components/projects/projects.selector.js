@@ -17,7 +17,6 @@ const selectProjects = createSelector([selectAllProjects], (projects) => {
 	// Show Unique Data
 	const uniqueData = _uniqWith(projects, requestPriorityFilter);
 	// Filter Deleted Projects
-	// eslint-disable-next-line lodash/prefer-reject
 	const filteredData = _filter(uniqueData, (i) => !i.deleted);
 	// Return Sorted Projects -- Optional
 	const sortedData = _sortBy(filteredData, "id");

@@ -14,6 +14,7 @@
 		"prettier/react",
 		"plugin:prettier/recommended",
 		"canonical/lodash",
+		"canonical/react",
 		"problems"
 	],
 	"plugins": ["react", "jsx-a11y", "react-redux", "react-extra", "react-hooks", "prettier", "autofix", "filenames"],
@@ -87,10 +88,9 @@
 			}
 		],
 		"brace-style": [2, "1tbs"],
-		"indent": [2, "tab", {"SwitchCase": 1}],
 		"semi": [2, "always"],
 		"object-curly-spacing": [2, "never"],
-		"react/jsx-boolean-value": 2,
+		"react/jsx-boolean-value": 0,
 		"react/jsx-props-no-spreading": 0,
 		"react-hooks/rules-of-hooks": 2,
 		"react-hooks/exhaustive-deps": 0,
@@ -132,6 +132,10 @@
 		"no-prototype-builtins": 0,
 		"no-unused-vars": 1,
 		"scanjs-rules/call_connect":0,
-		"import/prefer-default-export":0
+		"import/prefer-default-export":0,
+		"react/jsx-indent":0,
+		"react/jsx-indent-props":0,
+		"indent":0,
+		"lodash/prefer-reject":0
 	}
 }

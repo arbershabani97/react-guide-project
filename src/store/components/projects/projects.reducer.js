@@ -28,11 +28,9 @@ export default (state = [], action) => {
 			return action.payload.success ? _unionWith([modelFn(action.payload), ...state], requestIdFilter) : _union([modelFn(action.payload)], state);
 
 		case DELETE_PROJECT:
-			// eslint-disable-next-line lodash/prefer-reject
 			return action.payload.success ? _filter(state, (i) => i.id !== action.payload.id) : _union([modelFn(action.payload)], state);
 
 		case PROJECTS_ERROR:
-			// eslint-disable-next-line lodash/prefer-reject
 			return _filter(state, (i) => i.requestId !== action.payload.requestId);
 
 		default:
