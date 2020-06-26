@@ -9,7 +9,10 @@ export const useSearch = ({apiFn, debounceTime = 700}) => {
 	const submitSearch = useCallback(
 		_debounce(async (search) => {
 			try {
-				if (!search) return;
+				if (!search) {
+					setResults([]);
+					return;
+				}
 				const {data} = await apiFn({search});
 				setResults(data);
 			} catch (error_) {
