@@ -1,5 +1,6 @@
-import {GET_PROJECTS, POST_PROJECT, PUT_PROJECT, DELETE_PROJECT, PROJECTS_ERROR, GET_UPDATE_PROJECTS} from "../../actionTypes";
-import store from "../../index";
+import store from "../..";
+import {DELETE_PROJECT, GET_PROJECTS, GET_UPDATE_PROJECTS, POST_PROJECT, PROJECTS_ERROR, PUT_PROJECT} from "../../actionTypes";
+
 const {dispatch} = store;
 
 export default {

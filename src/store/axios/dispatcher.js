@@ -18,7 +18,7 @@ const dispatcher = (type, data) => {
 			if (method === "delete") {
 				instance[method]({
 					requestId,
-					id: +data.config.url.split("/").slice(-1)[0],
+					id: Number(data.config.url.split("/").slice(-1)[0]),
 					deleted: true,
 				});
 			}
@@ -29,13 +29,13 @@ const dispatcher = (type, data) => {
 				data.data.requestId = requestId;
 				data.data.success = true;
 				// Add Id, when it is a delete request or getSingle
-				if (method === "delete" || !reducer.endsWith("s")) data.data.id = +data.config.url.split("/").slice(-1)[0];
-				update ? instance["getUpdate"](data.data) : instance[method](data.data);
+				if (method === "delete" || !reducer.endsWith("s")) data.data.id = Number(data.config.url.split("/").slice(-1)[0]);
+				update ? instance.getUpdate(data.data) : instance[method](data.data);
 			}
 			break;
 
 		case "error":
-			if (data.config.method !== "get") instance["error"]({requestId});
+			if (data.config.method !== "get") instance.error({requestId});
 			break;
 	}
 };

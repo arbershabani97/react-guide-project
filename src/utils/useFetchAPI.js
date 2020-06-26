@@ -8,14 +8,14 @@ export const useFetchAPI = ({apiFn, data}) => {
 		try {
 			const {data: res} = await apiFn(data);
 			setResults(res);
-		} catch (e) {
-			setError(e?.response || "No Internet Connection!");
+		} catch (error_) {
+			setError(error_?.response || "No Internet Connection!");
 		}
 	};
 
 	return {
-		handleClick, 
-		results, 
-		apiError: error 
+		handleClick,
+		results,
+		apiError: error,
 	};
 };

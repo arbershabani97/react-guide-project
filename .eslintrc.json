@@ -58,16 +58,7 @@
 		"react/no-set-state": 0,
 		"no-ternary": 0,
 		"no-secrets/no-secrets": [2, {"tolerance": 5.0}],
-		"react/jsx-no-bind": [
-			2,
-			{
-				"ignoreDOMComponents": false,
-				"ignoreRefs": false,
-				"allowArrowFunctions": false,
-				"allowFunctions": false,
-				"allowBind": false
-			}
-		],
+		"react/jsx-no-bind": 0,
 		"no-else-return": 2,
 		"react/no-deprecated": 2,
 		"react/jsx-filename-extension": [
@@ -138,6 +129,9 @@
 		"no-magic-numbers": 0,
 		"lodash/prefer-immutable-method": 0,
 		"no-case-declarations": 0,
-		"no-prototype-builtins": 0
+		"no-prototype-builtins": 0,
+		"no-unused-vars": 1,
+		"scanjs-rules/call_connect":0,
+		"import/prefer-default-export":0
 	}
 }

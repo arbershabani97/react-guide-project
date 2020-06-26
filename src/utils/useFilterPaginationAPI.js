@@ -1,5 +1,5 @@
-import {useState, useCallback} from "react";
 import _debounce from "lodash/debounce";
+import {useCallback, useState} from "react";
 
 export const useFilterPaginationAPI = ({apiFn, debounceTime = 500}) => {
 	const [currentPage, setCurrentPage] = useState(0);
@@ -8,6 +8,7 @@ export const useFilterPaginationAPI = ({apiFn, debounceTime = 500}) => {
 	const [error, setError] = useState();
 
 	const handleFetch = useCallback(
+		// eslint-disable-next-line max-statements
 		_debounce(async (data, reset) => {
 			try {
 				if (reset) {
@@ -15,24 +16,24 @@ export const useFilterPaginationAPI = ({apiFn, debounceTime = 500}) => {
 					setCurrentPage(data.page);
 					setLoadedPages(new Set());
 					setResults(res);
-				} else if (!loadedPages.has(data.page)){
-					setLoadedPages(_loadedPages=> new Set(_loadedPages).add(data.page));
+				} else if (!loadedPages.has(data.page)) {
+					setLoadedPages((_loadedPages) => new Set(_loadedPages).add(data.page));
 					const {data: res} = await apiFn(data);
 					setCurrentPage(data.page);
 					setResults(res);
 				}
-			} catch (e) {
-				setLoadedPages(_loadedPages=> new Set(_loadedPages).delete(data.page));
-				setError(e?.response || "No Internet Connection!");
+			} catch (error_) {
+				setLoadedPages((_loadedPages) => new Set(_loadedPages).delete(data.page));
+				setError(error_?.response || "No Internet Connection!");
 			}
 		}, debounceTime),
 	);
 
 	return {
-		handleFetch, 
-		results, 
+		handleFetch,
+		results,
 		apiError: error,
-		currentPage, 
-		loadedPages
+		currentPage,
+		loadedPages,
 	};
 };

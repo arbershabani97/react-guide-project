@@ -1,6 +1,7 @@
 import "./styles/_Project.scss";
 
 import React from "react";
+
 import {updateProject} from "../../store/components/project/project.action";
 
 const _Project = ({project, onToggle}) => {

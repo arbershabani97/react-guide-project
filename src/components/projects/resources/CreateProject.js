@@ -9,31 +9,26 @@ import Input from "../../shared/Input";
 
 const CreateProject = () => {
 	const {register, handleSubmit, errors, reset} = useForm();
+	// eslint-disable-next-line no-unused-vars
 	const {onSubmit, apiError} = useAPI({apiFn: postProject, reset});
-	
+
 	return (
 		<form className="CreateProject" onSubmit={handleSubmit(onSubmit)}>
-			<Input 
-				type="text" 
-				name="title" 
-				placeholder="title" 
+			<Input
+				error={errors?.["title"]}
+				name="title"
+				placeholder="title"
 				register={register({
-					required:"Your input is required", 
-					maxLength:{
+					required: "Your input is required",
+					maxLength: {
 						value: 3,
-						message: 'This input exceed maxLength.',
-					}
-				})} 
-				error={errors?.["title"]} 
-				/>
-			<Input 
-				type="text" 
-				name="userId" 
-				placeholder="userId" 
-				register={register({required:"Your input is required"})} 
-				error={errors?.["userId"]} 
-				/>
-			<button type="submit">Submit</button>
+						message: "This input exceed maxLength.",
+					},
+				})}
+				type="text"
+			/>
+			<Input error={errors?.["userId"]} name="userId" placeholder="userId" register={register({required: "Your input is required"})} type="text" />
+			<button type="submit">Submit </button>
 		</form>
 	);
 };

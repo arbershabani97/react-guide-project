@@ -1,14 +1,15 @@
 import "./styles/ListProjects.scss";
 
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {connect} from "react-redux";
-import {useFilterPaginationAPI} from "../../../utils/useFilterPaginationAPI";
 
+import Project from "../_Project";
 import {getProjects} from "../../../store/components/projects/projects.API";
 import {selectProjects} from "../../../store/components/projects/projects.selector";
-import Project from "../_Project";
+import {useFilterPaginationAPI} from "../../../utils/useFilterPaginationAPI";
 
 const ListProjects = ({projects, onToggle}) => {
+	// eslint-disable-next-line no-unused-vars
 	const {handleFetch, results, apiError, currentPage, loadedPages} = useFilterPaginationAPI({apiFn: getProjects});
 
 	useEffect(() => handleFetch({page: 1}), []);
@@ -24,16 +25,16 @@ const ListProjects = ({projects, onToggle}) => {
 		<>
 			<div className="ListProjects">
 				{projects.map((project) => (
-					<Project key={project.id} project={project} onToggle={onToggle} />
+					<Project key={project.id} onToggle={onToggle} project={project} />
 				))}
 			</div>
-			<button type="button" onClick={handleNext}>
+			<button onClick={handleNext} type="button">
 				Get Next Page
-			</button> 
-			<button type="button" onClick={handleFilter}>
+			</button>
+			<button onClick={handleFilter} type="button">
 				Filter Projects
-			</button> 
-			<button type="button" onClick={handleOnlyNext}>
+			</button>
+			<button onClick={handleOnlyNext} type="button">
 				Get Only Next Page
 			</button>
 		</>

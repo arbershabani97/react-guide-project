@@ -1,5 +1,5 @@
-import {useCallback, useState} from "react";
 import _debounce from "lodash/debounce";
+import {useCallback, useState} from "react";
 
 export const useAPI = ({apiFn, debounceTime = 300, reset}) => {
 	const [error, setError] = useState("");
@@ -8,15 +8,15 @@ export const useAPI = ({apiFn, debounceTime = 300, reset}) => {
 			try {
 				await apiFn(data);
 				reset();
-			} catch (e) {
-				setError(e?.response || "No Internet Connection!");
+			} catch (error_) {
+				setError(error_?.response || "No Internet Connection!");
 			}
 		}, debounceTime),
 		[],
 	);
 
 	return {
-		onSubmit, 
-		apiError: error
+		onSubmit,
+		apiError: error,
 	};
 };

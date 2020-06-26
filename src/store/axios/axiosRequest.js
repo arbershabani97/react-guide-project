@@ -10,6 +10,7 @@ const axiosWrapper = (reducer, requestId, update) => {
 	return instance;
 };
 
+// eslint-disable-next-line max-params, consistent-return
 const axiosReq = async (reducer, requestId, type, url, data = null, params = null, headers = null, update) => {
 	try {
 		if (type === "get") return await axiosWrapper(reducer, requestId, update)[type](url, {params});

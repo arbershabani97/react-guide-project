@@ -6,6 +6,7 @@
 		"axios": "^0.19.2",
 		"eslint": "^7.3.1",
 		"history": "^4.10.1",
+		"lodash": "^4.17.15",
 		"node-sass": "^4.13.1",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
@@ -28,14 +29,14 @@
 		"extends": "react-app"
 	},
 	"lint-staged": {
-	  "*.{js,jsx,ts,tsx}": [
-		"eslint --fix",
-		"git add"
-	  ],
-	  "*.{scss}": [
-		"stylelint --fix",
-		"git add"
-	  ]
+		"*.{js,jsx,ts,tsx}": [
+			"eslint --fix",
+			"git add"
+		],
+		"*.{scss}": [
+			"stylelint --fix",
+			"git add"
+		]
 	},
 	"browserslist": {
 		"production": [
@@ -62,13 +63,18 @@
 		"eslint-plugin-autofix": "^1.0.0",
 		"eslint-plugin-css-modules": "^2.11.0",
 		"eslint-plugin-eslint-comments": "^3.2.0",
+		"eslint-plugin-fsa": "^1.0.12",
 		"eslint-plugin-html": "^6.0.2",
 		"eslint-plugin-import": "^2.21.2",
+		"eslint-plugin-jest-async": "^1.0.3",
+		"eslint-plugin-json": "^2.1.1",
 		"eslint-plugin-json-format": "^2.0.1",
 		"eslint-plugin-jsx-a11y": "^6.3.1",
+		"eslint-plugin-lodash-fp": "^2.2.0-a1",
 		"eslint-plugin-markdown": "^1.0.2",
 		"eslint-plugin-no-constructor-bind": "^2.0.2",
 		"eslint-plugin-no-secrets": "^0.6.8",
+		"eslint-plugin-no-unsanitized": "^3.1.2",
 		"eslint-plugin-no-use-extend-native": "^0.5.0",
 		"eslint-plugin-only-error": "^1.0.2",
 		"eslint-plugin-optimize-regex": "^1.2.0",
@@ -78,6 +84,8 @@
 		"eslint-plugin-react-extra": "^0.1.0",
 		"eslint-plugin-react-hooks": "^4.0.4",
 		"eslint-plugin-react-redux": "^3.0.3",
+		"eslint-plugin-scanjs-rules": "^0.2.1",
+		"eslint-plugin-security": "^1.4.0",
 		"eslint-plugin-simple-import-sort": "^5.0.3",
 		"eslint-plugin-sonarjs": "^0.5.0",
 		"eslint-plugin-switch-case": "^1.1.2",
@@ -91,5 +99,10 @@
 		"stylelint-order": "^4.1.0",
 		"stylelint-prettier": "^1.1.2",
 		"stylelint-scss": "^3.18.0"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
 	}
 }

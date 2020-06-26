@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import dispatcher from "./dispatcher";
 
 // Set Axios Defaults
@@ -9,7 +10,7 @@ axios.interceptors.request.use((config) => {
 	dispatcher("request", {config});
 
 	return config;
-}, undefined);
+});
 
 axios.interceptors.response.use(
 	(data) => {

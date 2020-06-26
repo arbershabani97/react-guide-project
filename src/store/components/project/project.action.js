@@ -1,5 +1,6 @@
-import {SELECT_PROJECT, REMOVE_PROJECT} from "../../actionTypes";
-import store from "../../index";
+import store from "../..";
+import {REMOVE_PROJECT, SELECT_PROJECT} from "../../actionTypes";
+
 const {dispatch} = store;
 
 export const get = (data) => dispatch({type: SELECT_PROJECT, payload: data});

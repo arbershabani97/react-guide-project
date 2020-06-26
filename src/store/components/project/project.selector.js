@@ -1,7 +1,8 @@
-import _pick from "lodash/pick";
 import _keys from "lodash/keys";
-import {selectorModel} from "./project.model";
+import _pick from "lodash/pick";
 import {createSelector} from "reselect";
+
+import {selectorModel} from "./project.model";
 
 const myProject = (state) => state.project;
 

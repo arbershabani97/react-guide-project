@@ -1,11 +1,12 @@
-import {GET_PROJECTS, POST_PROJECT, PUT_PROJECT, DELETE_PROJECT, PROJECTS_ERROR, GET_UPDATE_PROJECTS} from "../../actionTypes";
-import _pick from "lodash/pick";
-import _keys from "lodash/keys";
-import _unionWith from "lodash/unionWith";
-import _union from "lodash/union";
 import _filter from "lodash/filter";
+import _keys from "lodash/keys";
 import _map from "lodash/map";
+import _pick from "lodash/pick";
+import _union from "lodash/union";
+import _unionWith from "lodash/unionWith";
 import _uniqBy from "lodash/uniqBy";
+
+import {DELETE_PROJECT, GET_PROJECTS, GET_UPDATE_PROJECTS, POST_PROJECT, PROJECTS_ERROR, PUT_PROJECT} from "../../actionTypes";
 import requestIdFilter from "../../helpers/requestIdFilter";
 import {reducerModel} from "./projects.model";
 
@@ -27,9 +28,11 @@ export default (state = [], action) => {
 			return action.payload.success ? _unionWith([modelFn(action.payload), ...state], requestIdFilter) : _union([modelFn(action.payload)], state);
 
 		case DELETE_PROJECT:
+			// eslint-disable-next-line lodash/prefer-reject
 			return action.payload.success ? _filter(state, (i) => i.id !== action.payload.id) : _union([modelFn(action.payload)], state);
 
 		case PROJECTS_ERROR:
+			// eslint-disable-next-line lodash/prefer-reject
 			return _filter(state, (i) => i.requestId !== action.payload.requestId);
 
 		default:

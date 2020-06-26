@@ -2,11 +2,13 @@ import "./styles/ShowProject.scss";
 
 import React from "react";
 import {connect} from "react-redux";
-import {selectProject} from "../../../store/components/project/project.selector";
+
 import {getProject} from "../../../store/components/project/project.API";
+import {selectProject} from "../../../store/components/project/project.selector";
 import {useFetchAPI} from "../../../utils/useFetchAPI";
 
 const ShowProject = ({id, title, userId, body}) => {
+	// eslint-disable-next-line no-unused-vars
 	const {handleClick, results, apiError} = useFetchAPI({apiFn: getProject, data: id});
 
 	return (

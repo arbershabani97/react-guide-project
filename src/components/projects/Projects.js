@@ -3,12 +3,12 @@ import "./styles/Projects.scss";
 import React, {useCallback, useState} from "react";
 import {TabContent, TabPane} from "reactstrap";
 
+import SearchProjects from "./resources/_SearchProjects";
 import CreateProject from "./resources/CreateProject";
 import DeleteProject from "./resources/DeleteProject";
 import EditProject from "./resources/EditProject";
 import ListProjects from "./resources/ListProjects";
 import ShowProject from "./resources/ShowProject";
-import SearchProjects from "./resources/_SearchProjects";
 
 const Projects = () => {
 	const [activeTab, setActiveTab] = useState("home");
