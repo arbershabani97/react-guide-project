@@ -33,10 +33,10 @@
 			"eslint --fix",
 			"git add"
 		],
-		"*.scss": [
+		"*.{scss}": [
 			"stylelint --fix",
 			"git add"
-		]
+		]	  
 	},
 	"browserslist": {
 		"production": [
