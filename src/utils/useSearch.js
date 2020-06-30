@@ -7,6 +7,7 @@ export const useSearch = ({apiFn, debounceTime = 700}) => {
 	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(false);
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const submitSearch = useCallback(
 		_debounce(async (search) => {
 			try {

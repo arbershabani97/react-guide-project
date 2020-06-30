@@ -5,6 +5,7 @@ export const useAPI = ({apiFn, debounceTime = 300, reset}) => {
 	const [error, setError] = useState("");
 	const [loading, setLoading] = useState(false);
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const onSubmit = useCallback(
 		_debounce(async (data) => {
 			try {

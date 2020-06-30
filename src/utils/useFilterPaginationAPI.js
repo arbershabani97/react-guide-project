@@ -8,6 +8,7 @@ export const useFilterPaginationAPI = ({apiFn, debounceTime = 500}) => {
 	const [error, setError] = useState();
 	const [loading, setLoading] = useState(false);
 
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const handleFetch = useCallback(
 		// eslint-disable-next-line max-statements
 		_debounce(async (data, reset) => {

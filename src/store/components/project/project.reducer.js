@@ -12,7 +12,7 @@ export default (state = {}, action) => {
 			return state.id === action.payload.id ? modelFn({...state, ...action.payload}) : modelFn(action.payload);
 
 		case REMOVE_PROJECT:
-			return modelFn({});
+			return {};
 
 		default:
 			return state;
