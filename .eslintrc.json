@@ -136,6 +136,7 @@
 		"react/jsx-indent":0,
 		"react/jsx-indent-props":0,
 		"indent":0,
-		"lodash/prefer-reject":0
+		"lodash/prefer-reject":0,
+		"sonarjs/no-identical-functions":1
 	}
 }

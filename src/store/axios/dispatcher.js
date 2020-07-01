@@ -15,8 +15,14 @@ const dispatcher = (status, data) => {
 
 	switch (method) {
 		case "get":
-			if (status === "success" && !reducer.endsWith("s")) instance.get(data.data);
-			if (status === "success" && reducer.endsWith("s")) instance.get({payload: {data: data.data, meta: {currentPage: 1}}, status, etag: ""});
+			if (status === "success") {
+				if (reducer.endsWith("s")) {
+					const getMethod = update ? "getUpdate" : "get";
+					instance[getMethod]({payload: {data: data.data, meta: {currentPage: 1}}, status, etag: ""});
+				} else {
+					instance.get(data.data);
+				}
+			}
 			break;
 
 		case "post":
@@ -27,7 +33,6 @@ const dispatcher = (status, data) => {
 			const singleInstance = Actions[reducer.slice(0, -1)];
 
 			if (status === "success" && singleInstance) singleInstance.get(payload);
-			console.log("payload", payload);
 			if (payload) instance[method]({payload, status, requestId});
 			break;
 
