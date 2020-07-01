@@ -1,16 +1,16 @@
-import "./styles/ListProjects.scss";
+import "./styles/ListNotes.scss";
 
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 
-import Project from "../_Project";
-import {getProjects} from "../../../store/components/projects/projects.API";
-import {selectProjects} from "../../../store/components/projects/projects.selector";
+import Note from "../_Note";
+import {getNotes} from "../../../store/components/notes/notes.API";
+import {selectNotes} from "../../../store/components/notes/notes.selector";
 import {useFilterPaginationAPI} from "../../../utils/useFilterPaginationAPI";
 
-const ListProjects = ({projects, onToggle}) => {
+const ListNotes = ({notes, onToggle}) => {
 	// eslint-disable-next-line no-unused-vars
-	const {handleFetch, results, loading, apiError, currentPage, loadedPages} = useFilterPaginationAPI({apiFn: getProjects});
+	const {handleFetch, results, loading, apiError, currentPage, loadedPages} = useFilterPaginationAPI({apiFn: getNotes});
 
 	useEffect(() => {
 		handleFetch({page: 1});
@@ -26,16 +26,16 @@ const ListProjects = ({projects, onToggle}) => {
 
 	return (
 		<>
-			<div className="ListProjects">
-				{projects.render.map((id) => (
-					<Project key={id} onToggle={onToggle} project={projects.list[id]} />
+			<div className="ListNotes">
+				{notes.render.map((id) => (
+					<Note key={id} note={notes.list[id]} onToggle={onToggle} />
 				))}
 			</div>
 			<button onClick={handleNext} type="button">
 				Get Next Page
 			</button>
 			<button onClick={handleFilter} type="button">
-				Filter Projects
+				Filter Notes
 			</button>
 			<button onClick={handleOnlyNext} type="button">
 				Get Only Next Page
@@ -43,6 +43,6 @@ const ListProjects = ({projects, onToggle}) => {
 		</>
 	);
 };
-const mapStateToProps = (state) => ({projects: selectProjects(state)});
+const mapStateToProps = (state) => ({notes: selectNotes(state)});
 
-export default connect(mapStateToProps)(ListProjects);
+export default connect(mapStateToProps)(ListNotes);

@@ -13,3 +13,6 @@ export const POST_NOTE = "POST_NOTE";
 export const PUT_NOTE = "PUT_NOTE";
 export const DELETE_NOTE = "DELETE_NOTE";
 export const NOTES_ERROR = "NOTES_ERROR";
+
+export const SELECT_NOTE = "SELECT_NOTE";
+export const REMOVE_NOTE = "REMOVE_NOTE";
