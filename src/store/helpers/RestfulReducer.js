@@ -5,15 +5,15 @@
 const RestfulState = {etag: "", pages: new Set(), show: new Set(), list: {}};
 const RestfulReducer = {
 	get(state, action, update) {
+		// Stop Execution if request doesn't succeed
+		if (action.status !== "success") return state;
+		// Set Current Etag
+		state.etag = action.etag;
 		// Reset Show and Pages when paginating
 		if (update) {
 			state.pages = new Set();
 			state.show = new Set();
 		}
-		// Stop execution if the request has failed
-		if (action.status !== "success") return state;
-		// Set Current Etag
-		state.etag = action.etag;
 		// Add Current Page to Pages
 		state.pages.add(action.payload.meta.currentPage);
 		// Add the data to the list
@@ -39,42 +39,36 @@ const RestfulReducer = {
 		return {...state};
 	},
 	post(state, action) {
-		if (action.status === "success") {
-			// Show the new confirmed element on the list
-			state.show.add(action.payload.id);
-			// Show the new confirmed element on the list
-			state.list[action.payload.id] = action.payload;
-			// Return the state
-			return {...state};
-		}
+		// Stop Execution if request doesn't succeed
+		if (action.status !== "success") return state;
+		// Show the new confirmed element on the list
+		state.show.add(action.payload.id);
+		// Show the new confirmed element on the list
+		state.list[action.payload.id] = action.payload;
 		// Return the state
-		return state;
+		return {...state};
 	},
 	put(state, action) {
-		if (action.status === "success") {
-			// Update the current data
-			const selectedTarget = state.list[action.payload.id];
-			state.list[action.payload.id] = {
-				...selectedTarget,
-				...action.payload,
-			};
-			// Return the state
-			return {...state};
-		}
+		// Stop Execution if request doesn't succeed
+		if (action.status !== "success") return state;
+		// Update the current data
+		const selectedTarget = state.list[action.payload.id];
+		state.list[action.payload.id] = {
+			...selectedTarget,
+			...action.payload,
+		};
 		// Return the state
-		return state;
+		return {...state};
 	},
 	delete(state, action) {
-		if (action.status === "success") {
-			// Remove selected element from show list
-			state.show.delete(action.payload.id);
-			// Remove the selected element completely
-			delete state.list[action.payload.id];
-			// Return the state
-			return {...state};
-		}
+		// Stop Execution if request doesn't succeed
+		if (action.status !== "success") return state;
+		// Remove selected element from show list
+		state.show.delete(action.payload.id);
+		// Remove the selected element completely
+		delete state.list[action.payload.id];
 		// Return the state
-		return state;
+		return {...state};
 	},
 };
 export {RestfulReducer, RestfulState};
