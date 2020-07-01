@@ -4,7 +4,8 @@
  */
 const RestfulState = {etag: "", pages: new Set(), show: new Set(), list: {}};
 const RestfulReducer = {
-	get(state, action, update) {
+	// eslint-disable-next-line max-params
+	get(state, action, modelFn, update) {
 		// Stop Execution if request doesn't succeed
 		if (action.status !== "success") return state;
 		// Set Current Etag
@@ -21,7 +22,7 @@ const RestfulReducer = {
 			// Add Show Data
 			state.show.add(target.id);
 			// Add Each Item to the List
-			state.list[target.id] = target;
+			state.list[target.id] = modelFn(target);
 		});
 		/*
 		 * for (let a = 0; a < 100; a++) {
@@ -38,25 +39,25 @@ const RestfulReducer = {
 		// Return the state
 		return {...state};
 	},
-	post(state, action) {
+	post(state, action, modelFn) {
 		// Stop Execution if request doesn't succeed
 		if (action.status !== "success") return state;
 		// Show the new confirmed element on the list
 		state.show.add(action.payload.id);
 		// Show the new confirmed element on the list
-		state.list[action.payload.id] = action.payload;
+		state.list[action.payload.id] = modelFn(action.payload);
 		// Return the state
 		return {...state};
 	},
-	put(state, action) {
+	put(state, action, modelFn) {
 		// Stop Execution if request doesn't succeed
 		if (action.status !== "success") return state;
 		// Update the current data
 		const selectedTarget = state.list[action.payload.id];
-		state.list[action.payload.id] = {
+		state.list[action.payload.id] = modelFn({
 			...selectedTarget,
 			...action.payload,
-		};
+		});
 		// Return the state
 		return {...state};
 	},

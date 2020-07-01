@@ -1,11 +1,7 @@
-import _keys from "lodash/keys";
-import _pick from "lodash/pick";
 import {createSelector} from "reselect";
 
-import {selectorModel} from "./project.model";
+const selectSingleProject = (state) => state.project;
 
-const myProject = (state) => state.project;
-
-const selectProject = createSelector([myProject], (project) => _pick(project, _keys(selectorModel)));
+const selectProject = createSelector([selectSingleProject], (project) => project);
 
 export {selectProject};
