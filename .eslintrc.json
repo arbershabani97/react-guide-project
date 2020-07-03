@@ -76,7 +76,8 @@
 				"useTabs": true,
 				"bracketSpacing": false,
 				"trailingComma": "all",
-				"semi": true
+				"semi": true,
+				"endOfLine":"auto"
 			}
 		],
 		"react-redux/connect-prefer-named-arguments": 2,
