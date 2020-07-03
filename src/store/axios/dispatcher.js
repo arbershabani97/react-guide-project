@@ -11,7 +11,7 @@ const dispatcher = (status, data) => {
 	if (!instance) return;
 
 	const payloadData = data.config.data || null;
-	const payload = status === "success" || status === "error" ? JSON.parse(payloadData) : payloadData;
+	let payload = status === "success" || status === "error" ? JSON.parse(payloadData) : payloadData;
 
 	switch (method) {
 		case "get":
@@ -26,6 +26,7 @@ const dispatcher = (status, data) => {
 			break;
 
 		case "post":
+			if (status === "success") payload = data.data;
 			if (data.config.data) instance[method]({payload, status, requestId});
 			break;
 
