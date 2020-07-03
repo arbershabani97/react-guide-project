@@ -28,7 +28,9 @@ const CreateNote = () => {
 				type="text"
 			/>
 			<Input error={errors?.["userId"]} name="userId" placeholder="userId" register={register({required: "Your input is required"})} type="text" />
-			<button type="submit">Submit</button>
+			<button disabled={loading} type="submit">
+				Submit
+			</button>
 		</form>
 	);
 };

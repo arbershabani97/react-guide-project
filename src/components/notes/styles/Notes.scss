@@ -51,6 +51,9 @@
 			&:hover {
 				background: rgba(#0062cc, 0.9);
 			}
+			&:disabled {
+				background: rgba(#0062cc, 0.6);
+			}
 		}
 	}
 	.box {

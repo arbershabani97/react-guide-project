@@ -44,14 +44,17 @@ const Notes = () => {
 				<TabPane tabId="create">
 					<h3>Create Tab</h3>
 					<CreateNote />
+					<ListNotes onToggle={handleToggle} />
 				</TabPane>
 				<TabPane tabId="edit">
 					<h3>Edit Tab</h3>
 					<EditNote />
+					<ListNotes onToggle={handleToggle} />
 				</TabPane>
 				<TabPane tabId="delete">
 					<h3>Delete Tab</h3>
 					<DeleteNote />
+					<ListNotes onToggle={handleToggle} />
 				</TabPane>
 				<TabPane tabId="search">
 					<h3>Search Tab</h3>

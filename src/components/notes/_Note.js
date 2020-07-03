@@ -10,14 +10,11 @@ const _Note = ({note, onToggle}) => {
 		updateNote(note);
 	};
 
-	const {title, userId} = note;
+	const {id, title, userId} = note;
 	return (
 		<div className="_Note box">
 			<p>
-				title: <span>{title}</span>
-			</p>
-			<p>
-				userId: <span>{userId}</span>
+				{id} - title: <span>{title}</span> userId: <span>{userId}</span>&nbsp;
 			</p>
 			<div>
 				<button onClick={handleClick} tab="show" type="button">

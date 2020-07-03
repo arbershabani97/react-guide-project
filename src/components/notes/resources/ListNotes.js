@@ -27,7 +27,7 @@ const ListNotes = ({notes, onToggle}) => {
 	return (
 		<>
 			<div className="ListNotes">
-				{notes.render.map((id) => (
+				{notes.render.slice(90).map((id) => (
 					<Note key={id} note={notes.list[id]} onToggle={onToggle} />
 				))}
 			</div>

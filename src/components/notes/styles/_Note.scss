@@ -1,10 +1,17 @@
 ._Note {
-	width: 220px;
+	display: flex;
+	flex-direction: row !important;
+	align-items: center;
+	width: 100%;
 
-	min-width: 220px;
+	// min-width: 220px;
 
-	margin-bottom: 10px;
+	margin-bottom: 3px;
+	padding: 0 !important;
+	border: 0 !important;
 	p {
+		margin-bottom: 0;
+
 		font-size: 16px;
 		span {
 			font-weight: 600;
