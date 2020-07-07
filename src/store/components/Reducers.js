@@ -11,5 +11,13 @@ const appReducer = combineReducers({
 	notes,
 	note,
 });
+const rootReducer = (state, action) => {
+	if (action.type === "USER_LOGOUT") {
+		// eslint-disable-next-line no-undefined
+		state = undefined;
+	}
 
-export default appReducer;
+	return appReducer(state, action);
+};
+
+export default rootReducer;

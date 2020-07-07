@@ -9,7 +9,7 @@ import {deleteProject} from "../../../store/components/projects/projects.API";
 import {useAPI} from "../../../utils/useAPI";
 
 const DeleteProject = ({project}) => {
-	const {id, title, userId} = project;
+	const {id, name, color} = project;
 	const {register, handleSubmit, reset} = useForm();
 	// eslint-disable-next-line no-unused-vars
 	const {onSubmit, loading, apiError} = useAPI({apiFn: deleteProject, reset});
@@ -18,10 +18,10 @@ const DeleteProject = ({project}) => {
 		<form className="DeleteProject box" onSubmit={handleSubmit(onSubmit)}>
 			<input ref={register({required: true})} defaultValue={id} name="id" type="hidden" />
 			<p>
-				title: <span>{title}</span>
+				name: <span>{name}</span>
 			</p>
 			<p>
-				userId: <span>{userId}</span>
+				color: <span>{color}</span>
 			</p>
 			<button type="submit">Delete</button>
 		</form>

@@ -4,7 +4,7 @@ const selectAllProjects = (state) => state.projects;
 
 const selectProjects = createSelector([selectAllProjects], (projects) => {
 	// Projects Sorting
-	projects.render = [...projects.show].sort((a, b) => a - b);
+	projects.show = projects.show.sort((a, b) => a - b);
 	return projects;
 });
 

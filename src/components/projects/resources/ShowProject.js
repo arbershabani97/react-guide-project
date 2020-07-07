@@ -8,7 +8,7 @@ import {selectProject} from "../../../store/components/project/project.selector"
 import {useFetchAPI} from "../../../utils/useFetchAPI";
 
 const ShowProject = ({project}) => {
-	const {id, title, userId, body} = project;
+	const {id, name, color, ownerId} = project;
 	// eslint-disable-next-line no-unused-vars
 	const {handleClick, results, loading, apiError} = useFetchAPI({apiFn: getProject, data: id});
 
@@ -18,14 +18,14 @@ const ShowProject = ({project}) => {
 				id: <span>{id}</span>
 			</p>
 			<p>
-				title: <span>{title}</span>
+				name: <span>{name}</span>
 			</p>
 			<p>
-				userId: <span>{userId}</span>
+				color: <span>{color}</span>
 			</p>
-			{body && (
+			{ownerId && (
 				<p>
-					body: <span>{body}</span>
+					ownerId: <span>{ownerId}</span>
 				</p>
 			)}
 			<button onClick={handleClick} type="button">

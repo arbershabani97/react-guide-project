@@ -18,8 +18,22 @@ const EditNote = ({note}) => {
 	return (
 		<form className="EditNote" onSubmit={handleSubmit(onSubmit)}>
 			<input ref={register({required: true})} defaultValue={id} name="id" type="hidden" />
-			<Input defaultValue={title} error={errors?.["title"]} name="title" placeholder="title" register={register({required: "Your input is required"})} type="text" />
-			<Input defaultValue={userId} error={errors?.["userId"]} name="userId" placeholder="userId" register={register({required: "Your input is required"})} type="text" />
+			<Input
+				defaultValue={title}
+				error={errors?.["title"]}
+				name="title"
+				placeholder="title"
+				register={register({required: "Your input is required"})}
+				type="text"
+			/>
+			<Input
+				defaultValue={userId}
+				error={errors?.["userId"]}
+				name="userId"
+				placeholder="userId"
+				register={register({required: "Your input is required"})}
+				type="text"
+			/>
 			<button type="submit">Submit</button>
 		</form>
 	);

@@ -12,12 +12,12 @@ const modelFn = (item) => _pick(item, _keys(requestModel));
 const requestData = () => ["notes", generateId(requestId++)];
 
 // Save Data in Redux
-const getNotes = (params = null, update) => axiosReq(...requestData(), "get", "/posts", null, params, null, update);
-const postNote = (data) => axiosReq(...requestData(), "post", "/posts", modelFn(data));
-const putNote = (data) => axiosReq(...requestData(), "put", `/posts/${data.id}`, modelFn(data));
-const deleteNote = (data) => axiosReq(...requestData(), "delete", `/posts/${data.id}`);
+const getNotes = (params = null, update) => axiosReq(...requestData(), "get", "/notes", null, params, null, update);
+const postNote = (data) => axiosReq(...requestData(), "post", "/notes", modelFn(data));
+const putNote = (data) => axiosReq(...requestData(), "put", `/notes/${data.id}`, modelFn(data));
+const deleteNote = (data) => axiosReq(...requestData(), "delete", `/notes/${data.id}`);
 
 // Only API Call
-const searchNotes = (params = null) => axiosReq("", "", "get", "/posts", null, params);
+const searchNotes = (params = null) => axiosReq("", "", "get", "/notes", null, params);
 
 export {getNotes, postNote, putNote, deleteNote, searchNotes};

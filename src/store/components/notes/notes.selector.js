@@ -4,7 +4,7 @@ const selectAllNotes = (state) => state.notes;
 
 const selectNotes = createSelector([selectAllNotes], (notes) => {
 	// Notes Sorting
-	notes.render = [...notes.show].sort((a, b) => a - b);
+	notes.render = notes.show.sort((a, b) => a - b);
 	return notes;
 });
 

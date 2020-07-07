@@ -27,9 +27,7 @@ const ListNotes = ({notes, onToggle}) => {
 	return (
 		<>
 			<div className="ListNotes">
-				{notes.render.slice(90).map((id) => (
-					<Note key={id} note={notes.list[id]} onToggle={onToggle} />
-				))}
+				{notes.show.slice(90).map((id) => id in notes.list && <Note key={id} note={notes.list[id]} onToggle={onToggle} />)}
 			</div>
 			<button onClick={handleNext} type="button">
 				Get Next Page

@@ -12,12 +12,12 @@ const modelFn = (item) => _pick(item, _keys(requestModel));
 const requestData = () => ["projects", generateId(requestId++)];
 
 // Save Data in Redux
-const getProjects = (params = null, update) => axiosReq(...requestData(), "get", "/posts", null, params, null, update);
-const postProject = (data) => axiosReq(...requestData(), "post", "/posts", modelFn(data));
-const putProject = (data) => axiosReq(...requestData(), "put", `/posts/${data.id}`, modelFn(data));
-const deleteProject = (data) => axiosReq(...requestData(), "delete", `/posts/${data.id}`);
+const getProjects = (params = null, update) => axiosReq(...requestData(), "get", "/projects", null, params, null, update);
+const postProject = (data) => axiosReq(...requestData(), "post", "/projects", modelFn(data));
+const putProject = (data) => axiosReq(...requestData(), "put", `/projects/${data.id}`, modelFn(data));
+const deleteProject = (data) => axiosReq(...requestData(), "delete", `/projects/${data.id}`);
 
 // Only API Call
-const searchProjects = (params = null) => axiosReq("", "", "get", "/posts", null, params);
+const searchProjects = (params = null) => axiosReq("", "", "get", "/projects", null, params);
 
 export {getProjects, postProject, putProject, deleteProject, searchProjects};

@@ -1,12 +1,13 @@
 const requestModel = {
-	title: null,
-	userId: null,
+	name: null,
+	color: null,
 	id: null,
 };
 const reducerModel = {
-	title: null,
-	userId: null,
+	name: null,
+	color: null,
 	id: null,
+	ownerId: null,
 	// Backup on Change
 	backup: null,
 };

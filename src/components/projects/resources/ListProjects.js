@@ -27,9 +27,7 @@ const ListProjects = ({projects, onToggle}) => {
 	return (
 		<>
 			<div className="ListProjects">
-				{projects.render.map((id) => (
-					<Project key={id} onToggle={onToggle} project={projects.list[id]} />
-				))}
+				{projects.show.map((id) => id in projects.list && <Project key={id} onToggle={onToggle} project={projects.list[id]} />)}
 			</div>
 			<button onClick={handleNext} type="button">
 				Get Next Page

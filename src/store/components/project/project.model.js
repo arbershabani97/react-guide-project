@@ -1,7 +1,7 @@
 const reducerModel = {
-	title: null,
-	userId: null,
+	name: null,
+	color: null,
 	id: null,
-	body: null,
+	ownerId: null,
 };
 export {reducerModel};

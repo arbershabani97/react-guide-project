@@ -10,14 +10,14 @@ const _Project = ({project, onToggle}) => {
 		updateProject(project);
 	};
 
-	const {title, userId} = project;
+	const {name, color} = project;
 	return (
 		<div className="_Project box">
 			<p>
-				title: <span>{title}</span>
+				name: <span>{name}</span>
 			</p>
 			<p>
-				userId: <span>{userId}</span>
+				color: <span>{color}</span>
 			</p>
 			<div>
 				<button onClick={handleClick} tab="show" type="button">

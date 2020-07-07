@@ -3,6 +3,7 @@ import "./styles/Projects.scss";
 import React, {useCallback, useState} from "react";
 import {TabContent, TabPane} from "reactstrap";
 
+import {logout} from "../../store/components/logout/logout.action";
 import SearchProjects from "./resources/_SearchProjects";
 import CreateProject from "./resources/CreateProject";
 import DeleteProject from "./resources/DeleteProject";
@@ -30,6 +31,9 @@ const Projects = () => {
 				</button>
 				<button className={isSearchActive} onClick={handleToggle} tab="search" type="button">
 					Search
+				</button>
+				<button onClick={logout} type="button">
+					Flush
 				</button>
 			</div>
 			<TabContent activeTab={activeTab}>

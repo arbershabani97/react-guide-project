@@ -1,4 +1,4 @@
-import store from "../..";
+import {store} from "../..";
 import {REMOVE_PROJECT, SELECT_PROJECT} from "../../actionTypes";
 
 const {dispatch} = store;

@@ -1,4 +1,4 @@
-import store from "../..";
+import {store} from "../..";
 import {DELETE_PROJECT, GET_PROJECTS, GET_UPDATE_PROJECTS, POST_PROJECT, PUT_PROJECT} from "../../actionTypes";
 
 const {dispatch} = store;

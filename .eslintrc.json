@@ -32,6 +32,8 @@
 		"sonarjs/no-all-duplicated-branches": 0,
 		"sonarjs/no-duplicate-string": 0,
 		"unicorn/explicit-length-check": 0,
+		"unicorn/no-abusive-eslint-disable":0,
+		"eslint-comments/no-unlimited-disable":0,
 		"no-shadow": 0,
 		"no-param-reassign": 0,
 		"array-func/prefer-array-from": 0,
@@ -71,7 +73,7 @@
 		"prettier/prettier": [
 			2,
 			{
-				"printWidth": 250,
+				"printWidth": 150,
 				"tabWidth": 4,
 				"useTabs": true,
 				"bracketSpacing": false,
@@ -85,7 +87,7 @@
 		"max-len": [
 			2,
 			{
-				"code": 250
+				"code": 150
 			}
 		],
 		"brace-style": [2, "1tbs"],
@@ -132,12 +134,16 @@
 		"no-case-declarations": 0,
 		"no-prototype-builtins": 0,
 		"no-unused-vars": 1,
-		"scanjs-rules/call_connect":0,
-		"import/prefer-default-export":0,
-		"react/jsx-indent":0,
-		"react/jsx-indent-props":0,
-		"indent":0,
-		"lodash/prefer-reject":0,
-		"sonarjs/no-identical-functions":1
+		"scanjs-rules/call_connect": 0,
+		"import/prefer-default-export": 0,
+		"react/jsx-indent": 0,
+		"react/jsx-indent-props": 0,
+		"indent": 0,
+		"lodash/prefer-reject": 0,
+		"sonarjs/no-identical-functions": 1,
+		"default-case-last": 0,
+		"no-loss-of-precision": 0,
+		"no-useless-backreference": 0,
+		"lodash-fp/no-unused-result":0
 	}
 }

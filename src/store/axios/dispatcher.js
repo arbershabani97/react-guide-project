@@ -18,15 +18,15 @@ const dispatcher = (status, data) => {
 			if (status === "success") {
 				if (reducer.endsWith("s")) {
 					const getMethod = update ? "getUpdate" : "get";
-					instance[getMethod]({payload: {data: data.data, meta: {currentPage: 1}}, status, etag: ""});
+					instance[getMethod]({payload: data.data, status, etag: data.headers.etag});
 				} else {
-					instance.get(data.data);
+					instance.get(data.data.data);
 				}
 			}
 			break;
 
 		case "post":
-			if (status === "success") payload = data.data;
+			if (status === "success") payload = data.data.data;
 			if (data.config.data) instance[method]({payload, status, requestId});
 			break;
 

@@ -15,9 +15,9 @@ const CreateProject = () => {
 	return (
 		<form className="CreateProject" onSubmit={handleSubmit(onSubmit)}>
 			<Input
-				error={errors?.["title"]}
-				name="title"
-				placeholder="title"
+				error={errors?.["name"]}
+				name="name"
+				placeholder="name"
 				register={register({
 					required: "Your input is required",
 					maxLength: {
@@ -27,7 +27,7 @@ const CreateProject = () => {
 				})}
 				type="text"
 			/>
-			<Input error={errors?.["userId"]} name="userId" placeholder="userId" register={register({required: "Your input is required"})} type="text" />
+			<Input error={errors?.["color"]} name="color" placeholder="color" register={register({required: "Your input is required"})} type="text" />
 			<button type="submit">Submit</button>
 		</form>
 	);

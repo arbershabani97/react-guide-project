@@ -1,4 +1,4 @@
-import store from "../..";
+import {store} from "../..";
 import {DELETE_NOTE, GET_NOTES, GET_UPDATE_NOTES, POST_NOTE, PUT_NOTE} from "../../actionTypes";
 
 const {dispatch} = store;
