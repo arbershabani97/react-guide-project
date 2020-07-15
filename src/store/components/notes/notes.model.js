@@ -7,7 +7,5 @@ const reducerModel = {
 	title: null,
 	userId: null,
 	id: null,
-	// Backup on Change
-	backup: null,
 };
 export {requestModel, reducerModel};

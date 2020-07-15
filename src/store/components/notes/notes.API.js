@@ -1,23 +1,32 @@
+import {axiosR} from "axios-r";
 import _keys from "lodash/keys";
 import _pick from "lodash/pick";
 
-import axiosReq from "../../axios/axiosRequest";
-import generateId from "../../axios/generateId";
 import {requestModel} from "./notes.model";
 
-let requestId = 1;
 const modelFn = (item) => _pick(item, _keys(requestModel));
 
-// Reducer & requestId
-const requestData = () => ["notes", generateId(requestId++)];
+// Reducer and Action Name
+const reducer = "notes";
 
 // Save Data in Redux
-const getNotes = (params = null, update) => axiosReq(...requestData(), "get", "/notes", null, params, null, update);
-const postNote = (data) => axiosReq(...requestData(), "post", "/notes", modelFn(data));
-const putNote = (data) => axiosReq(...requestData(), "put", `/notes/${data.id}`, modelFn(data));
-const deleteNote = (data) => axiosReq(...requestData(), "delete", `/notes/${data.id}`);
+const getNotes = (params = null, update) => {
+	const action = update ? "getUpdate" : "get";
+	return axiosR(reducer, action).get("/notes", {params}, true);
+};
+const postNote = (data) => {
+	return axiosR(reducer, "post").post("/notes", modelFn(data));
+};
+
+const putNote = (data) => {
+	return axiosR(reducer, "put").put(`/notes/${data.id}`, modelFn(data));
+};
+
+const deleteNote = (data) => {
+	return axiosR(reducer, "delete").delete(`/notes/${data.id}`);
+};
 
 // Only API Call
-const searchNotes = (params = null) => axiosReq("", "", "get", "/notes", null, params);
+const searchNotes = (params = null) => axiosR().get("/notes", {params});
 
 export {getNotes, postNote, putNote, deleteNote, searchNotes};

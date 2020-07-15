@@ -1,8 +1,7 @@
-import axiosReq from "../../axios/axiosRequest";
-import generateId from "../../axios/generateId";
+import {axiosR} from "axios-r";
 
-let requestId = 1;
-
-const getProject = (id) => axiosReq("project", generateId(requestId++), "get", `/projects/${id}`);
+const getProject = (id) => {
+	return axiosR("project", "get").get(`/projects/${id}`);
+};
 
 export {getProject};

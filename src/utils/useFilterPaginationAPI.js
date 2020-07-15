@@ -3,7 +3,7 @@ import {useCallback, useState} from "react";
 
 export const useFilterPaginationAPI = ({apiFn, debounceTime = 500}) => {
 	const [currentPage, setCurrentPage] = useState(0);
-	const [loadedPages, setLoadedPages] = useState(new Set());
+	const [loadedPages, setLoadedPages] = useState([]);
 	const [results, setResults] = useState();
 	const [error, setError] = useState();
 	const [loading, setLoading] = useState(false);
@@ -17,17 +17,19 @@ export const useFilterPaginationAPI = ({apiFn, debounceTime = 500}) => {
 				if (reset) {
 					const {data: res} = await apiFn(data, reset);
 					setCurrentPage(data.page);
-					setLoadedPages(new Set());
+					setLoadedPages([]);
 					setResults(res);
-				} else if (!loadedPages.has(data.page)) {
-					setLoadedPages((_loadedPages) => new Set(_loadedPages).add(data.page));
+				} else if (!loadedPages.includes(data.page)) {
+					const updatedPages = [...loadedPages, data.page];
+					setLoadedPages(updatedPages);
 					const {data: res} = await apiFn(data);
 					setCurrentPage(data.page);
 					setResults(res);
 				}
 				setLoading(false);
 			} catch (error_) {
-				setLoadedPages((_loadedPages) => new Set(_loadedPages).delete(data.page));
+				const updatedPages = loadedPages.filter((page) => page !== data.page);
+				setLoadedPages(updatedPages);
 				setError(error_?.response || "No Internet Connection!");
 				setLoading(false);
 			}
